@@ -29,6 +29,7 @@ public class HttpServer {
         // создание ответа
         String response = """
         <h1>Hello from http server</h1>
+        <h2>It works</h2>
         <h2>It is working</h2>
         """;
         out.write("HTTP/1.1 404 OK\r\n");
