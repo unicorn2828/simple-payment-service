@@ -1,4 +1,4 @@
-package com.iprodi;
+package com.iprody;
 
 import java.io.*;
 import java.net.ServerSocket;
