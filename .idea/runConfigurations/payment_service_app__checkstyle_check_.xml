@@ -11,7 +11,8 @@
           </option>
           <option name="goals">
             <list>
-              <option value="checkstyle:check" />
+              <option value="clean" />
+              <option value="instal" />
             </list>
           </option>
           <option name="multimoduleDir" />
