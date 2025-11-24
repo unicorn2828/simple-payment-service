@@ -2,6 +2,8 @@ name: Build Project for PR
 
 on:
   push:
+    branches:
+      - 'main'
   pull_request:
     branches:
       - 'main'
