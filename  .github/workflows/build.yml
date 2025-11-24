@@ -1,6 +1,7 @@
 name: Build Project for PR
 on:
   # Запуск только при создании или обновлении pull request в ветку main
+  push:
   pull_request:
 
 jobs:
