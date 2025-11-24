@@ -3,6 +3,9 @@ on:
   # Запуск только при создании или обновлении pull request в ветку main
   pull_request:
     branches:
+      - 'feature/**'
+      - 'bugfix'
+      - 'develop'
       - 'main'
 jobs:
   build:
