@@ -3,8 +3,7 @@ name: Build Project for PR
 on:
   pull_request:
     branches:
-      - main
-    types: [opened, edited]
+      - 'main'
 
 jobs:
   build:
