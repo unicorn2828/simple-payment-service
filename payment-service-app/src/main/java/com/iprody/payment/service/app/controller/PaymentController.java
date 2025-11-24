@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public class PaymentController {
 
     @GetMapping
-    public ResponseEntity<PaymentDto> get(){
+    public ResponseEntity<PaymentDto> get()  {
         return ResponseEntity.ok(PaymentDto.builder()
                 .id(2L)
                 .value(99.99)
