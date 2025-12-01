@@ -1,6 +1,5 @@
-package com.iprody.payment.service.app.controller.exception;
+package com.iprody.payment.service.app.exception;
 
-import com.iprody.payment.service.app.service.exception.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

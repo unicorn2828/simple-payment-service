@@ -1,37 +1,37 @@
 package com.iprody.payment.service.app.service;
 
 import com.iprody.payment.service.app.dto.PaymentDto;
-import com.iprody.payment.service.app.service.exception.Error;
-import com.iprody.payment.service.app.service.exception.ServiceException;
+import com.iprody.payment.service.app.exception.ServiceException;
+import com.iprody.payment.service.app.mapper.PaymentMapper;
+import com.iprody.payment.service.app.repository.PaymentRepository;
+import com.iprody.payment.service.app.repository.model.Payment;
+import com.iprody.payment.service.app.repository.model.PaymentStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
+import static com.iprody.payment.service.app.exception.ErrorMessage.PAYMENT_NOT_EXIST;
+
 @Service
+@RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
-    private final PaymentDto dto = PaymentDto.builder()
-            .id(1L)
-            .value(99.99)
-            .name("Payment #1")
-            .build();
+    private final PaymentRepository paymentRepository;
+    private final PaymentMapper paymentMapper;
 
     @Override
-    public PaymentDto getPayment(Long id) {
-
-        validate(id);
-        if (!id.equals(dto.getId())) {
-            throw new ServiceException(Error.PAYMENT_NOT_EXIST, id);
-        }
-
-        return dto;
+    public PaymentDto getById(UUID id) {
+        return paymentRepository.findById(id)
+                .map(paymentMapper::toDto)
+                .orElseThrow(() -> new ServiceException(PAYMENT_NOT_EXIST, id));
     }
 
-    private void validate(Long id) {
-        if (id == null) {
-            throw new ServiceException(Error.NULL_ID);
-        }
-        if (id <= 0) {
-            throw new ServiceException(Error.NEGATIVE_ID);
-        }
+    @Override
+    public List<PaymentDto> getByStatus(PaymentStatus status) {
+        List<Payment> payments = paymentRepository.findByStatus(status);
+        return payments.stream().map(paymentMapper::toDto).toList();
     }
 
 }

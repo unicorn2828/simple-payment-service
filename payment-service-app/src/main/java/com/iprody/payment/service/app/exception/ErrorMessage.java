@@ -1,4 +1,4 @@
-package com.iprody.payment.service.app.service.exception;
+package com.iprody.payment.service.app.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor
-public enum Error {
+public enum ErrorMessage {
 
     // Common
     NULL_ID(HttpStatus.BAD_REQUEST, "ID cannot be null"),
