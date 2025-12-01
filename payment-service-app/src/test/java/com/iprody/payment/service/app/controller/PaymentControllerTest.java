@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -24,23 +26,20 @@ class PaymentControllerTest {
     private PaymentService paymentService;
 
     @Test
-    void getPaymentTest() throws Exception {
+    void getByIdTest() throws Exception {
         // given
-        when(paymentService.getPayment(1L)).thenReturn(PaymentDto.builder()
-                .id(1L)
-                .value(99.99)
-                .name("Test")
+        UUID guid = UUID.randomUUID();
+        when(paymentService.getById(guid)).thenReturn(PaymentDto.builder()
+                .guid(guid)
                 .build());
 
         // when
-        mvc.perform(get("/payments/1")
+        mvc.perform(get("/payments/" + guid)
                         .contentType(MediaType.APPLICATION_JSON))
 
         // then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.value").value(99.99))
-                .andExpect(jsonPath("$.name").value("Test"));
+                .andExpect(jsonPath("$.guid").value(guid.toString()));
     }
 
 }

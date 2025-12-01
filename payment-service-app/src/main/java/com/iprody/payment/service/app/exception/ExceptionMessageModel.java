@@ -1,4 +1,4 @@
-package com.iprody.payment.service.app.controller.exception;
+package com.iprody.payment.service.app.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  payment-service-app:
+    image: payment-service-app
+    container_name: payment-service-app
+    ports:
+      - "8080:8080"
+
+  postgres:
+    image: postgres
+    container_name: postgres-db-2
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: payment-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  postgres:
+#    image: postgres:latest
+#    container_name: postgres-db
+#    environment:
+#      POSTGRES_USER: postgres_user
+#      POSTGRES_PASSWORD: postgres_password
+#      POSTGRES_DB: postgres_db
+#      PGDATA: /var/lib/postgresql/data/pgdata
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data/pgdata
+#    healthcheck:
+#      test: [ "CMD-SHELL", "pg_isready -U postgres_user -d postgres_db" ]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+#    restart: unless-stopped
+#    tty: true
+#    stdin_open: true

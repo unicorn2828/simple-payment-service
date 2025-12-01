@@ -1,8 +1,10 @@
-package com.iprody.payment.service.app.service.exception;
+package com.iprody.payment.service.app.exception;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,23 +15,28 @@ public class ServiceException extends RuntimeException {
 
     private static final String EMPTY_STRING = "";
 
-    public ServiceException(Error error) {
+    public ServiceException(ErrorMessage error) {
         this(error.getStatus(), error.getMessage());
         this.status = error.getStatus();
         this.message = getMessage(EMPTY_STRING);
     }
 
-    public ServiceException(Error error, int value) {
+    public ServiceException(ErrorMessage error, int value) {
         this(error.getStatus(), error.getMessage());
         this.message = getMessage(Integer.toString(value));
     }
 
-    public ServiceException(Error error, long value) {
+    public ServiceException(ErrorMessage error, long value) {
         this(error.getStatus(), error.getMessage());
         this.message = getMessage(Long.toString(value));
     }
 
-    public ServiceException(Error error, String value) {
+    public ServiceException(ErrorMessage error, UUID value) {
+        this(error.getStatus(), error.getMessage());
+        this.message = getMessage(value.toString());
+    }
+
+    public ServiceException(ErrorMessage error, String value) {
         this(error.getStatus(), error.getMessage());
         this.message = getMessage(value);
     }
