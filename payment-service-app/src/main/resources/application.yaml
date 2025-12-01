@@ -6,6 +6,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/payment-db # URL подключения к БД
     username: admin # Имя пользователя
     password: secret # Пароль
+    driver-class-name: org.postgresql.Driver # класс jdbc драйвера
 
   jpa:
     hibernate:
@@ -14,6 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true # Форматировать SQL для читаемости
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8080
