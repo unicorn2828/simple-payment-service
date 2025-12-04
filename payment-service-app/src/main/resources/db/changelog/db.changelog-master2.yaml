@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: migration/001-create-payment.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: migration/002-add-demo-payment.yaml
+      relativeToChangelogFile: true
