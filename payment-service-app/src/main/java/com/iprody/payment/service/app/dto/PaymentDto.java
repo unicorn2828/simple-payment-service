@@ -13,9 +13,6 @@ import java.util.UUID;
 @Builder
 public class PaymentDto {
 
-    @NotNull(message = "UUID cannot be null")
-    private UUID guid;
-
     @NotNull
     private UUID inquiryRefId;
 
