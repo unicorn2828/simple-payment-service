@@ -8,11 +8,13 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.iprody</groupId>
 	<artifactId>payment-service-app</artifactId>
 	<version>0.0.1</version>
 	<name>payment-service-app</name>
 	<description> Payment service web application</description>
+
 	<url/>
 	<licenses>
 		<license/>
@@ -26,9 +28,12 @@
 		<tag/>
 		<url/>
 	</scm>
+
 	<properties>
 		<java.version>23</java.version>
+		<mapstruct.version>1.6.3</mapstruct.version>
 	</properties>
+
 	<dependencies>
 		<!--spring-boot-starters-->
 		<dependency>
@@ -69,12 +74,12 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.6.3</version>
+			<version>${mapstruct.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>1.6.3</version>
+			<version>${mapstruct.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- spring-dotenv for reading .env -->
@@ -104,7 +109,7 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>1.6.3</version>
+							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
