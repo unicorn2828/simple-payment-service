@@ -47,7 +47,7 @@ class PaymentControllerTest {
 
         // then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.guid").value(uuid.toString()));
+                .andExpect(jsonPath("$.currency").value("USD"));
     }
 
 }
