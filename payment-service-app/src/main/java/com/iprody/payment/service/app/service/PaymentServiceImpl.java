@@ -1,14 +1,12 @@
 package com.iprody.payment.service.app.service;
 
 import com.iprody.payment.service.app.dto.PaymentDto;
+import com.iprody.payment.service.app.dto.PaymentFilterDto;
 import com.iprody.payment.service.app.exception.ServiceException;
 import com.iprody.payment.service.app.mapper.PaymentMapper;
-import com.iprody.payment.service.app.repository.specification.PaymentFilterFactory;
 import com.iprody.payment.service.app.repository.PaymentRepository;
 import com.iprody.payment.service.app.repository.model.Payment;
-import com.iprody.payment.service.app.dto.PaymentFilterDto;
-import com.iprody.payment.service.app.repository.model.PaymentStatus;
-import com.iprody.payment.service.app.repository.specification.PaymentSpecification;
+import com.iprody.payment.service.app.repository.specification.PaymentFilterFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

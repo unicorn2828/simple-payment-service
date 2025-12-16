@@ -11,6 +11,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -45,7 +46,7 @@ class PaymentControllerTest {
         mvc.perform(get("/payments/" + uuid)
                         .contentType(MediaType.APPLICATION_JSON))
 
-        // then
+                // then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.currency").value("USD"));
     }

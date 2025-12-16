@@ -1,8 +1,7 @@
 package com.iprody.payment.service.app.dto;
 
 import com.iprody.payment.service.app.repository.model.PaymentStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;

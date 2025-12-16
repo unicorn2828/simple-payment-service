@@ -11,8 +11,9 @@ import java.util.UUID;
 @Table(name = "payment")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class Payment {
 
