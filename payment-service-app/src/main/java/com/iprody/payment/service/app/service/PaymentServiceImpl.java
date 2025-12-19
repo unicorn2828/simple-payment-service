@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.iprody.payment.service.app.exception.ErrorMessage.PAYMENT_NOT_EXIST;
+import static com.iprody.payment.service.app.util.TimeUtil.getNow;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,10 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public List<PaymentDto> getPayments() {
-        return null;
+        return paymentRepository.findAll()
+                .stream()
+                .map(paymentMapper::toDto)
+                .toList();
     }
 
     @Override
@@ -38,14 +42,36 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Page<Payment> search(PaymentFilterDto filter, Pageable pageable) {
-        return paymentRepository.findAll(PaymentFilterFactory.filter(filter), pageable);
+    public Page<PaymentDto> search(PaymentFilterDto filter, Pageable pageable) {
+        Specification<Payment> spec = PaymentFilterFactory.filter(filter);
+        return paymentRepository.findAll(spec, pageable).map(paymentMapper::toDto);
     }
 
     @Override
-    public Page<PaymentDto> searchPaged2(PaymentFilterDto filter, Pageable pageable) {
-        Specification<Payment> spec = PaymentFilterFactory.filter(filter);
-        return paymentRepository.findAll(spec, pageable).map(paymentMapper::toDto);
+    public void delete(UUID id) {
+        if (!paymentRepository.existsById(id)) {
+            throw new ServiceException(PAYMENT_NOT_EXIST, id);
+        }
+        paymentRepository.deleteById(id);
+    }
+
+    @Override
+    public PaymentDto create(PaymentDto dto) {
+        Payment payment = paymentMapper.toEntity(dto);
+        payment.setCreatedAt(getNow());
+        payment.setUpdatedAt(getNow());
+        return paymentMapper.toDto(paymentRepository.save(payment));
+    }
+
+    @Override
+    public PaymentDto update(PaymentDto dto, UUID id) {
+        if (!paymentRepository.existsById(id)) {
+            throw new ServiceException(PAYMENT_NOT_EXIST, id);
+        }
+        Payment payment = paymentMapper.toEntity(dto);
+        payment.setGuid(id);
+        payment.setUpdatedAt(getNow());
+        return paymentMapper.toDto(paymentRepository.save(payment));
     }
 
 }

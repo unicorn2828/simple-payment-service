@@ -19,7 +19,8 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,8 +57,8 @@ class PaymentServiceTest {
         payment.setAmount(new BigDecimal("100.00"));
         payment.setCurrency("USD");
         payment.setStatus(PaymentStatus.APPROVED);
-        payment.setCreatedAt(OffsetDateTime.now());
-        payment.setUpdatedAt(OffsetDateTime.now());
+        payment.setCreatedAt(LocalDateTime.now());
+        payment.setUpdatedAt(LocalDateTime.now());
 
         paymentDto = PaymentDto.builder()
                 .currency(payment.getCurrency())
@@ -65,6 +66,13 @@ class PaymentServiceTest {
                 .build();
     }
 
+    @Test
+    void f() {
+        LocalDate d1 = LocalDate.of(2025, 05, 03);
+        LocalDate d2 = d1.plusDays(181);
+        System.out.println(d1);
+        System.out.println(d2);
+    }
     @Test
     void getPaymentByIdTest(@Random PaymentDto exampleDto,
                             @Random(size = 5, type = Payment.class)List<Payment> exampleList) {

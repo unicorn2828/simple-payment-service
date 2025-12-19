@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +22,7 @@ public class PaymentMapperTest {
     void toDtoTest() {
         // given
         var uuid = UUID.randomUUID();
-        var now = OffsetDateTime.now();
+        var now = LocalDateTime.now();
 
         var expected = new Payment();
         expected.setGuid(uuid);
@@ -52,7 +52,7 @@ public class PaymentMapperTest {
     void shouldMapToEntity() {
         // given
         var uuid = UUID.randomUUID();
-        var now = OffsetDateTime.now();
+        var now = LocalDateTime.now();
 
         var expected = PaymentDto.builder()
                 .note("some note")

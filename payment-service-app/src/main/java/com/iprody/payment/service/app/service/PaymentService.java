@@ -1,9 +1,7 @@
 package com.iprody.payment.service.app.service;
 
 import com.iprody.payment.service.app.dto.PaymentDto;
-import com.iprody.payment.service.app.repository.model.Payment;
 import com.iprody.payment.service.app.dto.PaymentFilterDto;
-import com.iprody.payment.service.app.repository.model.PaymentStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,8 +14,12 @@ public interface PaymentService {
 
     PaymentDto getPaymentById(UUID id);
 
-    Page<Payment> search(PaymentFilterDto request, Pageable pageable);
+    void delete(UUID id);
 
-    Page<PaymentDto> searchPaged2(PaymentFilterDto request, Pageable pageable);
+    PaymentDto create(PaymentDto dto);
+
+    PaymentDto update(PaymentDto dto, UUID id);
+
+    Page<PaymentDto> search(PaymentFilterDto request, Pageable pageable);
 
 }
