@@ -7,13 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
@@ -31,6 +30,7 @@ class PaymentControllerTest {
     private PaymentService paymentService;
 
     @Test
+    @WithMockUser(username = "testuser", roles = {"USER", "READER"})
     void getByIdTest() throws Exception {
         // given
         UUID uuid = UUID.randomUUID();
