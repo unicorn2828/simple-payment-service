@@ -1,25 +1,39 @@
 version: '3.8'
 
 services:
-  payment-service-app:
-    image: payment-service-app
-    container_name: payment-service-app
-    ports:
-      - "8080:8080"
+#  payment-service-app:
+#    image: payment-service-app
+#    container_name: payment-service-app
+#    ports:
+#      - "8080:8080"
 
-  postgres:
-    image: postgres
-    container_name: postgres-db-2
+#  postgres:
+#    image: postgres
+#    container_name: postgres-db-2
+#    environment:
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: secret
+#      POSTGRES_DB: payment-db
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data/pgdata
+#    restart: unless-stopped
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.3
+    container_name: keycloak
+    command:
+      - start-dev
+      - --http-port=8080
+      - --import-realm
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: payment-db
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
-      - "5432:5432"
+      - "8085:8080"
     volumes:
-      - ./pgdata:/var/lib/postgresql/data/pgdata
-    restart: unless-stopped
-
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
 
 
 

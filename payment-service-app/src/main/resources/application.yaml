@@ -1,11 +1,13 @@
 spring:
   application:
     name: ${APP_NAME}
+
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     changeLogFile: db/changelog/db:changelog-master.yaml
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -17,9 +19,16 @@ spring:
     properties:
       hibernate:
         format_sql: true # Форматировать SQL для читаемости
+
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085/realms/iprody-lms
 
 server:
   port: ${SERVER_PORT}
